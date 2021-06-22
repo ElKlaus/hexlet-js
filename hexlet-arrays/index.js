@@ -1,3 +1,34 @@
+// @ts-check
+/* eslint no-restricted-syntax: ["off", "ForOfStatement"] */
+
+const openingSymbols = ['(', '[', '{', '<'];
+const closingSymbols = [')', ']', '}', '>'];
+
+// BEGIN (write your solution here)
+const isBracketStructureBalanced = (str) => {
+  if (str.length === 0) return true;
+  
+  const temp = [];
+
+  for (let item = 0; item < str.length; item += 1) {
+    if (openingSymbols.includes(str[item])) {
+      temp.push(str[item]);
+    } else if (closingSymbols.includes(str[item]) /**/&& (closingSymbols.indexOf(str[item]) === openingSymbols.indexOf(temp[temp.length - 1]))) {
+      if (!temp.pop()) {
+        return false;
+      }
+    } else {
+      temp.push(str[item])
+    }
+  }
+    
+  return temp.length === 0;
+}
+
+export default isBracketStructureBalanced;
+// END
+
+
 const checkIsBalanced = (expression) => {
   // Инициализация стека
   const stack = [];
